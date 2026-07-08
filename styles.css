@@ -14,6 +14,8 @@
   --turf-bright:#4CAF6D;
   --chalk:#F6F4EC;
   --gold:#E7B750;
+  --saffron:#FF9933;   /* Indian-theme accent */
+  --india-green:#138808;
   --ink:#14201A;
   --ink-soft:#3C4A41;
   --line:rgba(20,32,26,0.12);
@@ -268,6 +270,153 @@ p{ margin:0 0 1em; line-height:1.6; color:var(--ink-soft); }
   .register-grid{ grid-template-columns:1fr; }
   .form-row.two-col{ grid-template-columns:1fr; }
 }
+
+/* ---------- Scroll reveal (used by coach/training/cta cards) ---------- */
+.reveal{ opacity:0; transform:translateY(22px); transition:opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .reveal{ opacity:1; transform:none; transition:none; }
+}
+
+/* ---------- Coach profile ---------- */
+.coach{ background:var(--chalk); position:relative; }
+.coach::before{
+  content:""; position:absolute; left:0; right:0; top:0; height:4px;
+  background:linear-gradient(90deg, var(--saffron) 0%, var(--saffron) 33%, #fff 33%, #fff 66%, var(--india-green) 66%);
+  opacity:0.85;
+}
+.coach-grid{
+  display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:center;
+}
+.coach-photo-wrap{ position:relative; }
+.coach-photo-frame{
+  position:relative; border-radius:var(--radius); overflow:hidden;
+  background:linear-gradient(160deg, #fff 0%, var(--chalk) 100%);
+  border:1px solid var(--line);
+  box-shadow:0 24px 60px -28px rgba(16,50,31,0.55);
+}
+.coach-photo-frame::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  box-shadow:inset 0 0 0 4px rgba(231,183,80,0.35);
+  border-radius:var(--radius);
+}
+.coach-photo{ width:100%; height:auto; display:block; }
+.coach-badge{
+  position:absolute; left:18px; top:18px; z-index:2;
+  background:var(--saffron); color:var(--ink);
+  font-family:var(--font-mono); font-weight:600; font-size:0.72rem;
+  text-transform:uppercase; letter-spacing:0.1em;
+  padding:8px 14px; border-radius:999px;
+  box-shadow:0 8px 20px -8px rgba(0,0,0,0.4);
+}
+.coach-role{
+  font-family:var(--font-mono); color:var(--turf-mid); font-weight:600;
+  letter-spacing:0.04em; margin:-8px 0 18px;
+}
+.coach-lead{ max-width:52ch; font-size:1.05rem; }
+.coach-facts{ list-style:none; margin:22px 0 30px; padding:0; }
+.coach-facts li{
+  display:flex; align-items:center; gap:12px;
+  padding:11px 0; border-bottom:1px dashed var(--line);
+  color:var(--ink); font-weight:500;
+}
+.coach-facts .fact-ic{ font-size:1.1rem; width:1.4em; text-align:center; }
+.coach-facts a{ color:var(--turf-mid); font-weight:600; text-decoration:none; }
+.coach-facts a:hover{ text-decoration:underline; }
+
+.coach-stats{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-top:8px;
+}
+.stat-card{
+  background:var(--turf-deep); color:var(--chalk); border-radius:var(--radius);
+  padding:22px 18px; text-align:center;
+  border-bottom:3px solid var(--saffron);
+  transition:transform 0.15s ease, box-shadow 0.15s ease;
+}
+.stat-card:hover{ transform:translateY(-4px); box-shadow:0 18px 36px -20px rgba(16,50,31,0.7); }
+.stat-num{
+  display:block; font-family:var(--font-display); font-size:2.2rem;
+  color:var(--gold); line-height:1;
+}
+.stat-lbl{
+  display:block; margin-top:8px; font-family:var(--font-mono);
+  font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase;
+  color:rgba(246,244,236,0.75);
+}
+
+@media (max-width:900px){
+  .coach-grid{ grid-template-columns:1fr; gap:36px; }
+  .coach-photo-frame{ max-width:420px; margin:0 auto; }
+}
+@media (max-width:560px){
+  .coach-stats{ grid-template-columns:1fr 1fr; }
+}
+
+/* ---------- Weekly training ---------- */
+.training{
+  background:
+    repeating-linear-gradient(180deg, rgba(255,255,255,0.03) 0 60px, transparent 60px 120px),
+    linear-gradient(180deg, var(--turf-deep) 0%, #0C2718 100%);
+  color:var(--chalk);
+}
+.training-location{
+  font-family:var(--font-mono); color:var(--gold); font-size:0.95rem;
+  letter-spacing:0.02em; margin-top:6px;
+}
+.week-grid{
+  display:grid; grid-template-columns:repeat(7, 1fr); gap:14px; margin-top:40px;
+}
+.day-card{
+  background:rgba(246,244,236,0.05); border:1px solid rgba(246,244,236,0.14);
+  border-radius:var(--radius); padding:22px 16px; text-align:center;
+  transition:transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+.day-card:hover{
+  transform:translateY(-6px);
+  background:rgba(246,244,236,0.09);
+  border-color:var(--saffron);
+}
+.day-name{
+  font-family:var(--font-display); font-size:1.2rem; color:var(--chalk);
+  margin:0 0 10px; letter-spacing:0.02em;
+}
+.day-time{
+  font-family:var(--font-mono); font-size:0.8rem; color:var(--gold);
+  margin:0; letter-spacing:0.02em;
+}
+.day-card.weekend{ background:rgba(255,153,51,0.12); border-color:rgba(255,153,51,0.4); }
+.day-card.weekend:hover{ background:rgba(255,153,51,0.18); }
+.wknd-tag{
+  display:block; font-family:var(--font-mono); font-size:0.6rem;
+  text-transform:uppercase; letter-spacing:0.1em; color:var(--saffron);
+  margin-top:4px;
+}
+@media (max-width:1000px){ .week-grid{ grid-template-columns:repeat(4, 1fr); } }
+@media (max-width:680px){ .week-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:420px){ .week-grid{ grid-template-columns:1fr; } }
+
+/* ---------- Contact coach CTA ---------- */
+.coach-cta{
+  position:relative; overflow:hidden;
+  background:linear-gradient(135deg, #0A2113 0%, var(--turf-deep) 60%, #143924 100%);
+  color:var(--chalk); text-align:center;
+}
+.cta-flag{
+  position:absolute; inset:0; pointer-events:none; opacity:0.5;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255,153,51,0.18), transparent 40%),
+    radial-gradient(circle at 88% 80%, rgba(19,136,8,0.18), transparent 42%);
+}
+.cta-inner{ position:relative; max-width:760px; }
+.cta-headline{ margin-bottom:18px; }
+.cta-sub{ max-width:56ch; margin:0 auto 30px; color:rgba(246,244,236,0.82); font-size:1.08rem; }
+.cta-actions{ display:flex; flex-wrap:wrap; gap:16px; justify-content:center; }
+.cta-phone{
+  margin-top:24px; font-family:var(--font-mono); font-size:1.05rem;
+  color:var(--gold); letter-spacing:0.03em;
+}
+.cta-phone a{ color:var(--gold); text-decoration:none; }
+.cta-phone a:hover{ text-decoration:underline; }
 
 /* ---------- Footer ---------- */
 .site-footer{ background:#0A2113; color:rgba(246,244,236,0.75); padding:56px 0 0; }
