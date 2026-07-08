@@ -38,6 +38,33 @@ dobInput.addEventListener('change', () => {
   guardianPhone.required = isMinor;
 });
 
+// ---- Scroll reveal for coach / training / CTA cards ----
+// Progressive enhancement: elements are visible by default via the
+// prefers-reduced-motion fallback, and revealed with a staggered fade
+// as they scroll into view for everyone else.
+const revealEls = document.querySelectorAll('.reveal');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+  revealEls.forEach(el => el.classList.add('in'));
+} else {
+  const revealObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        // Stagger siblings within the same grid for a cascading effect.
+        const siblings = Array.from(el.parentElement.children).filter(c => c.classList.contains('reveal'));
+        const idx = Math.max(0, siblings.indexOf(el));
+        el.style.transitionDelay = `${Math.min(idx * 70, 420)}ms`;
+        el.classList.add('in');
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+}
+
 // ---- Form submission ----
 // This form posts to Formspree (https://formspree.io) — a free service that
 // forwards submissions straight to your inbox with zero backend code.
