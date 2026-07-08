@@ -109,12 +109,29 @@ p{ margin:0 0 1em; line-height:1.6; color:var(--ink-soft); }
 /* ---------- Hero ---------- */
 .hero{
   position:relative;
-  background:
-    repeating-linear-gradient(180deg, rgba(255,255,255,0.035) 0 60px, transparent 60px 120px),
-    linear-gradient(180deg, var(--turf-deep) 0%, #0C2718 100%);
   color:var(--chalk);
   padding:64px 0 0;
   overflow:hidden;
+  background-color:var(--turf-deep);
+  /* Seamless football collage built from the club's own match photos, with a
+     dark-green readability gradient over it. JPEG fallback first, then a WebP
+     upgrade via image-set for browsers that support it. */
+  background-image:
+    linear-gradient(100deg,
+      rgba(16,50,31,0.82) 0%, rgba(16,50,31,0.58) 30%,
+      rgba(16,50,31,0.20) 58%, rgba(12,39,24,0.34) 100%),
+    linear-gradient(180deg, rgba(16,50,31,0.30) 0%, rgba(10,33,19,0.55) 100%),
+    url("assets/hero-collage.jpg");
+  background-image:
+    linear-gradient(100deg,
+      rgba(16,50,31,0.82) 0%, rgba(16,50,31,0.58) 30%,
+      rgba(16,50,31,0.20) 58%, rgba(12,39,24,0.34) 100%),
+    linear-gradient(180deg, rgba(16,50,31,0.30) 0%, rgba(10,33,19,0.55) 100%),
+    image-set(url("assets/hero-collage.webp") type("image/webp"),
+              url("assets/hero-collage.jpg") type("image/jpeg"));
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 .pitch-lines{
   position:absolute; inset:0; width:100%; height:100%;
@@ -158,6 +175,23 @@ p{ margin:0 0 1em; line-height:1.6; color:var(--ink-soft); }
 }
 @media (prefers-reduced-motion:reduce){
   .ticker-track{ animation:none; }
+}
+
+/* Hero collage: lighter, portrait-framed variant on phones so the subjects
+   aren't cropped awkwardly and the heading stays perfectly legible up top. */
+@media (max-width:640px){
+  .hero{
+    background-image:
+      linear-gradient(180deg,
+        rgba(16,50,31,0.86) 0%, rgba(16,50,31,0.50) 42%, rgba(10,33,19,0.62) 100%),
+      url("assets/hero-collage-mobile.jpg");
+    background-image:
+      linear-gradient(180deg,
+        rgba(16,50,31,0.86) 0%, rgba(16,50,31,0.50) 42%, rgba(10,33,19,0.62) 100%),
+      image-set(url("assets/hero-collage-mobile.webp") type("image/webp"),
+                url("assets/hero-collage-mobile.jpg") type("image/jpeg"));
+    background-position:center top;
+  }
 }
 
 /* ---------- Sections ---------- */
