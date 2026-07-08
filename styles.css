@@ -1,0 +1,281 @@
+/* =========================================================
+   Friends Soccer Club — Design tokens
+   Turf Deep   #10321F   background / dark sections
+   Turf Mid    #2F7A4E   primary accent (buttons, links)
+   Turf Bright #4CAF6D   hover / highlight
+   Chalk       #F6F4EC   light section background
+   Gold        #E7B750   scoreboard / signature accent
+   Ink         #14201A   body text
+   ========================================================= */
+
+:root{
+  --turf-deep:#10321F;
+  --turf-mid:#2F7A4E;
+  --turf-bright:#4CAF6D;
+  --chalk:#F6F4EC;
+  --gold:#E7B750;
+  --ink:#14201A;
+  --ink-soft:#3C4A41;
+  --line:rgba(20,32,26,0.12);
+
+  --font-display:'Anton', sans-serif;
+  --font-body:'Space Grotesk', sans-serif;
+  --font-mono:'IBM Plex Mono', monospace;
+
+  --radius:10px;
+  --wrap:1160px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--chalk);
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+h1,h2,h3{ font-family:var(--font-display); font-weight:400; letter-spacing:0.01em; line-height:1.05; margin:0; }
+p{ margin:0 0 1em; line-height:1.6; color:var(--ink-soft); }
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:0 24px; }
+
+.skip-link{
+  position:absolute; left:-999px; top:0; background:var(--gold); color:var(--ink);
+  padding:10px 16px; z-index:200; font-weight:600;
+}
+.skip-link:focus{ left:16px; top:16px; }
+
+:focus-visible{ outline:3px solid var(--gold); outline-offset:2px; }
+
+/* ---------- Header ---------- */
+.site-header{
+  position:sticky; top:0; z-index:100;
+  background:var(--turf-deep);
+  color:var(--chalk);
+  border-bottom:1px solid rgba(246,244,236,0.1);
+}
+.header-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  height:72px;
+}
+.brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--chalk); }
+.brand-mark{ color:var(--gold); display:flex; }
+.brand-name{ font-family:var(--font-display); font-size:1.25rem; letter-spacing:0.02em; }
+
+.main-nav{ display:flex; align-items:center; gap:32px; }
+.main-nav a{
+  text-decoration:none; color:var(--chalk); font-size:0.95rem; font-weight:500;
+  opacity:0.85; transition:opacity 0.15s ease;
+}
+.main-nav a:hover{ opacity:1; }
+.nav-cta{
+  background:var(--gold); color:var(--ink) !important; opacity:1 !important;
+  padding:9px 18px; border-radius:999px; font-weight:600;
+}
+.nav-cta:hover{ background:#f0c96e; }
+
+.nav-toggle{
+  display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:8px;
+}
+.nav-toggle span{ width:24px; height:2px; background:var(--chalk); display:block; }
+
+.mobile-nav{ display:none; flex-direction:column; background:var(--turf-deep); padding:8px 24px 20px; }
+.mobile-nav a{ color:var(--chalk); text-decoration:none; padding:12px 0; border-top:1px solid rgba(246,244,236,0.1); }
+.mobile-nav .nav-cta{ display:inline-block; margin-top:10px; text-align:center; border-top:none; }
+
+@media (max-width:820px){
+  .main-nav{ display:none; }
+  .nav-toggle{ display:flex; }
+  .mobile-nav.open{ display:flex; }
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:14px 28px; border-radius:999px; text-decoration:none;
+  font-weight:600; font-size:0.98rem; border:2px solid transparent; cursor:pointer;
+  transition:transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.btn:hover{ transform:translateY(-1px); }
+.btn-primary{ background:var(--gold); color:var(--ink); }
+.btn-primary:hover{ background:#f0c96e; }
+.btn-ghost{ border-color:rgba(246,244,236,0.5); color:var(--chalk); }
+.btn-ghost:hover{ border-color:var(--chalk); }
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;
+  background:
+    repeating-linear-gradient(180deg, rgba(255,255,255,0.035) 0 60px, transparent 60px 120px),
+    linear-gradient(180deg, var(--turf-deep) 0%, #0C2718 100%);
+  color:var(--chalk);
+  padding:64px 0 0;
+  overflow:hidden;
+}
+.pitch-lines{
+  position:absolute; inset:0; width:100%; height:100%;
+  color:rgba(246,244,236,0.08);
+}
+.hero-inner{ position:relative; padding-bottom:88px; }
+.eyebrow{
+  font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.14em;
+  font-size:0.78rem; color:var(--gold); margin-bottom:18px;
+}
+.hero-title{
+  font-size:clamp(2.8rem, 7vw, 5.4rem);
+  color:var(--chalk);
+  max-width:14ch;
+}
+.hero-title .hl{ color:var(--gold); }
+.hero-sub{
+  max-width:52ch; margin-top:24px; font-size:1.08rem; color:rgba(246,244,236,0.82);
+}
+.hero-actions{ display:flex; flex-wrap:wrap; gap:16px; margin-top:32px; }
+
+/* Signature: scoreboard ticker */
+.ticker{
+  position:relative; z-index:1;
+  border-top:1px solid rgba(246,244,236,0.15);
+  background:#0A2113;
+  overflow:hidden;
+  white-space:nowrap;
+}
+.ticker-track{
+  display:inline-flex; gap:22px; padding:12px 0;
+  font-family:var(--font-mono); font-size:0.82rem; letter-spacing:0.08em;
+  color:var(--gold);
+  animation:scroll-left 26s linear infinite;
+}
+.ticker-track span:nth-child(odd){ color:var(--gold); }
+.ticker-track span:nth-child(even){ color:rgba(246,244,236,0.4); }
+@keyframes scroll-left{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+@media (prefers-reduced-motion:reduce){
+  .ticker-track{ animation:none; }
+}
+
+/* ---------- Sections ---------- */
+.section{ padding:96px 0; }
+.section-label{
+  font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.14em;
+  font-size:0.78rem; color:var(--turf-mid); margin-bottom:14px;
+}
+.section-label.light{ color:var(--gold); }
+.section h2{ font-size:clamp(1.9rem, 4vw, 2.8rem); margin-bottom:20px; color:var(--ink); }
+.section h2.light-h{ color:var(--chalk); }
+.section-intro{ max-width:60ch; }
+
+/* About */
+.about-grid{
+  display:grid; grid-template-columns:1.3fr 1fr; gap:64px; align-items:start;
+}
+.about-stats{
+  display:grid; grid-template-columns:1fr 1fr; gap:28px;
+  margin:0; padding:32px; background:var(--turf-deep); border-radius:var(--radius);
+}
+.about-stats dt{
+  font-family:var(--font-display); font-size:2.4rem; color:var(--gold); margin:0;
+}
+.about-stats dd{ margin:4px 0 0; color:rgba(246,244,236,0.75); font-size:0.9rem; }
+
+@media (max-width:900px){
+  .about-grid{ grid-template-columns:1fr; }
+}
+
+/* Programs */
+.squad-grid{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; margin-top:40px;
+}
+.squad-card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:26px; transition:border-color 0.15s ease, transform 0.15s ease;
+}
+.squad-card:hover{ border-color:var(--turf-mid); transform:translateY(-3px); }
+.squad-age{
+  font-family:var(--font-mono); color:var(--turf-mid); font-weight:600;
+  font-size:0.85rem; letter-spacing:0.06em; margin-bottom:8px;
+}
+.squad-card h3{ font-size:1.3rem; margin-bottom:10px; color:var(--ink); }
+.squad-meta{
+  font-family:var(--font-mono); font-size:0.78rem; color:var(--ink-soft);
+  margin:14px 0 0; padding-top:14px; border-top:1px dashed var(--line);
+}
+@media (max-width:900px){
+  .squad-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:600px){
+  .squad-grid{ grid-template-columns:1fr; }
+}
+
+/* Schedule */
+.schedule{ background:var(--turf-deep); color:var(--chalk); }
+.scoreboard{
+  margin-top:36px; overflow-x:auto; border-radius:var(--radius);
+  border:1px solid rgba(246,244,236,0.15);
+}
+.scoreboard table{ width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:0.88rem; min-width:640px; }
+.scoreboard th{
+  text-align:left; text-transform:uppercase; letter-spacing:0.08em; font-size:0.72rem;
+  color:var(--gold); padding:14px 18px; background:#0A2113;
+}
+.scoreboard td{ padding:14px 18px; border-top:1px solid rgba(246,244,236,0.1); color:rgba(246,244,236,0.9); }
+.schedule-note{ margin-top:20px; color:rgba(246,244,236,0.65); max-width:60ch; }
+
+/* Register */
+.register-grid{
+  display:grid; grid-template-columns:0.9fr 1.3fr; gap:64px; align-items:start;
+}
+.register-notes{ margin:20px 0 0; padding-left:20px; color:var(--ink-soft); }
+.register-notes li{ margin-bottom:10px; }
+
+.reg-form{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:36px; display:flex; flex-direction:column; gap:20px;
+}
+.form-row{ display:flex; flex-direction:column; gap:8px; }
+.form-row.two-col{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.form-row.two-col > div{ display:flex; flex-direction:column; gap:8px; }
+.form-row label{ font-size:0.88rem; font-weight:600; color:var(--ink); }
+.form-row input,
+.form-row select,
+.form-row textarea{
+  font-family:var(--font-body); font-size:0.98rem; padding:12px 14px;
+  border:1.5px solid var(--line); border-radius:8px; background:var(--chalk);
+  color:var(--ink); width:100%;
+}
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus{
+  outline:none; border-color:var(--turf-mid); background:#fff;
+}
+.checkbox-row{ flex-direction:row; align-items:flex-start; gap:10px; }
+.checkbox-row input{ width:18px; height:18px; margin-top:3px; accent-color:var(--turf-mid); }
+.checkbox-row label{ font-weight:400; font-size:0.9rem; color:var(--ink-soft); }
+
+.guardian-fields{
+  border-left:3px solid var(--gold); padding-left:18px;
+}
+.guardian-fields.hidden{ display:none; }
+
+.btn-submit{ align-self:flex-start; }
+.form-status{ font-family:var(--font-mono); font-size:0.85rem; min-height:1.2em; }
+.form-status.success{ color:var(--turf-mid); }
+.form-status.error{ color:#B3441C; }
+
+@media (max-width:900px){
+  .register-grid{ grid-template-columns:1fr; }
+  .form-row.two-col{ grid-template-columns:1fr; }
+}
+
+/* ---------- Footer ---------- */
+.site-footer{ background:#0A2113; color:rgba(246,244,236,0.75); padding:56px 0 0; }
+.footer-inner{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px; padding-bottom:40px; }
+.footer-brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-size:1.1rem; color:var(--chalk); }
+.footer-brand .brand-mark{ color:var(--gold); }
+.footer-cols{ display:flex; gap:56px; flex-wrap:wrap; }
+.footer-heading{ font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.1em; font-size:0.72rem; color:var(--gold); margin-bottom:10px; }
+.footer-cols a{ text-decoration:none; }
+.footer-cols a:hover{ text-decoration:underline; }
+.footer-legal{ border-top:1px solid rgba(246,244,236,0.1); padding:20px 0; font-size:0.8rem; }
