@@ -125,7 +125,7 @@ form.addEventListener('submit', async (e) => {
       throw new Error('Submission failed');
     }
   } catch (err) {
-    status.textContent = 'Something went wrong sending your registration. Please try again or email hello@friendssoccerclub.example.';
+    status.textContent = 'Something went wrong sending your registration. Please try again or email friendssocceracademy@gmail.com.';
     status.classList.add('error');
   } finally {
     submitBtn.disabled = false;

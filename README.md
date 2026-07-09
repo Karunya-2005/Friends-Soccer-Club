@@ -1,4 +1,4 @@
-# Friends Soccer Club — Website
+# Friends Soccer Academy — Website
 
 A static site for a community football club: hero, about, programs (age groups),
 schedule, and a registration form.
