@@ -461,4 +461,8 @@ p{ margin:0 0 1em; line-height:1.6; color:var(--ink-soft); }
 .footer-heading{ font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.1em; font-size:0.72rem; color:var(--gold); margin-bottom:10px; }
 .footer-cols a{ text-decoration:none; }
 .footer-cols a:hover{ text-decoration:underline; }
+/* Follow Us — reuses footer link + heading styling; gold icons match the theme */
+.footer-social{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.footer-social a{ display:inline-flex; align-items:center; gap:9px; }
+.footer-social .social-ic{ flex:none; color:var(--gold); }
 .footer-legal{ border-top:1px solid rgba(246,244,236,0.1); padding:20px 0; font-size:0.8rem; }
